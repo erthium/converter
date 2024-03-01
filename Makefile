@@ -7,20 +7,21 @@ MAIN_SCRIPT := $(SRC_DIR)/main.py
 TEST_SCRIPT := $(TESTS_DIR)/test.py
 
 
-.PHONY: run init test freeze
+.PHONY: freeze init test main
 
-
-run:
-	$(PY) $(FLAGS) $(MAIN_SCRIPT)
+freeze:
+	pip freeze > requirements.txt
 
 
 init:
 	pip install -r requirements.txt
 
 
+main:
+	$(PY) $(FLAGS) $(MAIN_SCRIPT)
+
+
 test:
 	$(PY) $(FLAGS) $(TEST_SCRIPT)
 
 
-freeze:
-	pip freeze > requirements.txt
