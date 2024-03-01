@@ -1,5 +1,5 @@
 """
-This script is used to convert a PDF file to an image file.
+This script is used to convert a PDF file to an image file.\n
 It includes the following functions:
 - pdf_to_image
 """

@@ -1,5 +1,5 @@
 """
-This script is used to make conversions between PDF files.
+This script is used to make conversions between PDF files.\n
 It includes the following functions:
 - clip_pdf
 - merge_pdfs

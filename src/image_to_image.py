@@ -1,5 +1,5 @@
 """
-This script is used to convert an image file to another image file.
+This script is used to convert an image file to another image file.\n
 It includes the following functions:
 - resize
 - resize_by_ratio

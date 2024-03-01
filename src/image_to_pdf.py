@@ -1,5 +1,8 @@
 """
-This script is used to convert an image file to a PDF file.
+This script is used to convert an image file to a PDF file.\n
+It includes the following functions:
+- draw_to_canvas
+- images_to_pdf
 """
 
 from PIL import Image
