@@ -32,6 +32,14 @@ def jpg_to_png(image: Image.Image) -> Image.Image:
 
 def png_to_jpg(image: Image.Image) -> Image.Image:
     return image.convert("RGB")
+
+
+def save_heic_to_png(image_path: str, output_path: str = "", quality: int = 100) -> None:
+    from heic2png import HEIC2PNG
+    heic_img = HEIC2PNG(image_path, quality=quality)  # Specify the quality of the converted image
+    if not output_path:
+        output_path = ".".join(image_path.split(".")[0: -1]) + ".png"
+    heic_img.save(output_path)  # The converted image will be saved as `test.png`            
     
 
 def reduce_size(image_path: str, max_MB: int, output_path: str) -> Image.Image:
