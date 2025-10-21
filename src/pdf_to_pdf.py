@@ -43,3 +43,13 @@ def clip_selections(pdf_path: str, output_path: str, selections: list[int]) -> N
     for index in selections:
         writer.add_page(reader.pages[index])
     writer.write(output_path)
+
+if __name__ == "__main__":
+    # get two PDF files and merge them
+    # usage: python pdf_to_pdf.py file1.pdf file2.pdf out.pdf
+    import argparse
+    parser = argparse.ArgumentParser(description="Merge PDF files.")
+    parser.add_argument("pdf_paths", nargs="+", help="Paths to the PDF files to merge.")
+    parser.add_argument("out", help="Path to the output PDF file.")
+    args = parser.parse_args()
+    merge_pdfs(args.pdf_paths, args.out)

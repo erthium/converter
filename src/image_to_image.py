@@ -52,3 +52,37 @@ def reduce_size(image_path: str, max_MB: int, output_path: str) -> Image.Image:
     quality = int(100 / ratio)
     image = Image.open(image_path)
     image.save(output_path, quality=quality)
+
+
+def main():
+    import os
+    import argparse
+    parser = argparse.ArgumentParser(description="Convert an image file to another image file.")
+    parser.add_argument("image_path", help="Path to the image file to convert.")
+    parser.add_argument("out", help="Path to the output image file.")
+    parser.add_argument("--jpg-to-png", action="store_true", help="Convert JPG to PNG.")
+    parser.add_argument("--png-to-jpg", action="store_true", help="Convert PNG to JPG.")
+    parser.add_argument("--resize", nargs=2, type=int, metavar=('width', 'height'), help="Resize the image to the given width and height.")
+    parser.add_argument("--resize-by-ratio", type=float, help="Resize the image by the given ratio.")
+    parser.add_argument("--reduce-size", type=int, metavar='max_MB', help="Reduce the image size below the given maximum size in mega bytes.")
+    if not os.path.exists(parser.parse_args().image_path):
+        raise FileNotFoundError(f"Image file {parser.parse_args().image_path} not found.")
+    args = parser.parse_args()
+    image = Image.open(args.image_path)
+    if args.jpg_to_png:
+        image = jpg_to_png(image)
+    if args.png_to_jpg:
+        image = png_to_jpg(image)
+    if args.resize:
+        new_size = (args.resize[0], args.resize[1])
+        image = resize(image, new_size)
+    if args.resize_by_ratio:
+        image = resize_by_ratio(image, args.resize_by_ratio)
+    if args.reduce_size:
+        reduce_size(args.image_path, args.reduce_size, args.out)
+    image.save(args.out)
+    print(f"Image saved to {args.out}")
+    image.close()
+
+if __name__ == "__main__":
+    main()
